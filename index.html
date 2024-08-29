@@ -68,16 +68,25 @@
 				/* Set the color to red */
 				color: red;
 			}
+			#searchBox{
+				height: 40px;
+    			width: 250px;
+				font-size: 2rem;
+			}
+			.buttons{
+				width: 35px;
+				height: 35px;
+			}
 		</style>
 		
 	</head>
 	<body>
 		<div class="header">
 			Search:
-			<input type="search" placeholder="search...">
-			<button data-search="next">&darr;</button>
-			<button data-search="prev">&uarr;</button>
-			<button data-search="clear">✖</button>
+			<input id="searchBox" type="search" placeholder="search...">
+			<button class="buttons" data-search="next">&darr;</button>
+			<button class="buttons" data-search="prev">&uarr;</button>
+			<button class="buttons" data-search="clear">✖</button>
 		  </div>
 		<div class="content">
 			<p style="text-align:center">
