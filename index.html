@@ -94,8 +94,8 @@
 			<button class="buttons" data-search="next">&darr;</button>
 			<button class="buttons" data-search="prev">&uarr;</button>
 			<button class="buttons" data-search="clear">✖</button>
-			<button class="buttons" onclick="changeFontSize(1)">+</button>
-			<button class="buttons" onclick="changeFontSize(-1)">-</button>
+			<button class="buttons" data-font="increase">+</button>
+			<button class="buttons" data-font="decrease">-</button>
 		  </div>
 		<div class="content">
 			<p style="text-align:center">
@@ -3804,21 +3804,21 @@
 		<script src="search.js"></script>
 
 		<script>
-			// Function to change font size of each element with a custom font-size
+			document.querySelector(".buttons[data-font='increase']").addEventListener("click", () => changeFontSize(1));
+			document.querySelector(".buttons[data-font='decrease']").addEventListener("click", () => changeFontSize(-1));
+
 			function changeFontSize(step) {
-				// Select all elements with explicit font sizes
+				console.log("Step value:", step); // Debugging log
 				const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, .Subtitle, .Title, .IntenseQuote, .Quote, .ListParagraph, .Hyperlink, span, li");
-	
-				// Loop through each element and adjust font size proportionally
 				elements.forEach(el => {
-					// Get the current font size in pixels
 					let style = window.getComputedStyle(el, null).getPropertyValue("font-size");
 					let currentSize = parseFloat(style);
-	
-					// Set the new font size
+					console.log("Current size:", currentSize); // Debugging log
 					el.style.fontSize = (currentSize + step) + "px";
+					console.log("New size:", currentSize + step); // Debugging log
 				});
 			}
+
 		</script>
 	</body>
 </html>
