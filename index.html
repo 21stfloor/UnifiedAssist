@@ -91,11 +91,11 @@
 	<body>
 		<div class="header">
 			<input id="searchBox" type="search" placeholder="search...">
-			<button class="buttons" data-search="next">&darr;</button>
-			<button class="buttons" data-search="prev">&uarr;</button>
-			<button class="buttons" data-search="clear">✖</button>
-			<button class="buttons" data-font="increase">+</button>
-			<button class="buttons" data-font="decrease">-</button>
+			<button class="buttons" data-search="next" type="button">&darr;</button>
+			<button class="buttons" data-search="prev" type="button">&uarr;</button>
+			<button class="buttons" data-search="clear" type="button">✖</button>
+			<button class="buttons" id="increase" type="button">+</button>
+			<button class="buttons" id="decrease" type="button">-</button>
 		  </div>
 		<div class="content">
 			<p style="text-align:center">
@@ -3804,10 +3804,24 @@
 		<script src="search.js"></script>
 
 		<script>
-			document.querySelector(".buttons[data-font='increase']").addEventListener("click", () => changeFontSize(1));
-			document.querySelector(".buttons[data-font='decrease']").addEventListener("click", () => changeFontSize(-1));
+			document.getElementById('increase').addEventListener("click", () => increaseFontSize());
+			document.getElementById('decrease').addEventListener("click", () => decreaseFontSize());
 
-			function changeFontSize(step) {
+			function increaseFontSize() {
+				const step = 1;
+				console.log("Step value:", step); // Debugging log
+				const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, .Subtitle, .Title, .IntenseQuote, .Quote, .ListParagraph, .Hyperlink, span, li");
+				elements.forEach(el => {
+					let style = window.getComputedStyle(el, null).getPropertyValue("font-size");
+					let currentSize = parseFloat(style);
+					console.log("Current size:", currentSize); // Debugging log
+					el.style.fontSize = (currentSize + step) + "px";
+					console.log("New size:", currentSize + step); // Debugging log
+				});
+			}
+
+			function decreaseFontSize() {
+				const step = -1;
 				console.log("Step value:", step); // Debugging log
 				const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, .Subtitle, .Title, .IntenseQuote, .Quote, .ListParagraph, .Hyperlink, span, li");
 				elements.forEach(el => {
