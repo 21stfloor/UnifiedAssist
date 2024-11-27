@@ -3808,28 +3808,24 @@
 			document.getElementById('decrease').addEventListener("click", () => decreaseFontSize());
 
 			function increaseFontSize() {
-				const step = 1;
-				console.log("Step value:", step); // Debugging log
 				const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, .Subtitle, .Title, .IntenseQuote, .Quote, .ListParagraph, .Hyperlink, span, li");
 				elements.forEach(el => {
-					let style = window.getComputedStyle(el, null).getPropertyValue("font-size");
-					let currentSize = parseFloat(style);
+					let currentSize = window.getComputedStyle(el).fontSize;
 					console.log("Current size:", currentSize); // Debugging log
-					el.style.fontSize = (currentSize + step) + "px";
-					console.log("New size:", currentSize + step); // Debugging log
+					let newSize = parseFloat(currentSize) + 1;
+					el.style.fontSize = `${newSize}px`;
+					console.log("New size:", newSize); // Debugging log
 				});
 			}
 
 			function decreaseFontSize() {
-				const step = -1;
-				console.log("Step value:", step); // Debugging log
 				const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, .Subtitle, .Title, .IntenseQuote, .Quote, .ListParagraph, .Hyperlink, span, li");
 				elements.forEach(el => {
-					let style = window.getComputedStyle(el, null).getPropertyValue("font-size");
-					let currentSize = parseFloat(style);
+					let currentSize = window.getComputedStyle(el).fontSize;
 					console.log("Current size:", currentSize); // Debugging log
-					el.style.fontSize = (currentSize + step) + "px";
-					console.log("New size:", currentSize + step); // Debugging log
+					let newSize = parseFloat(currentSize) - 1;
+					el.style.fontSize = `${newSize}px`;
+					console.log("New size:", newSize); // Debugging log
 				});
 			}
 
